@@ -37,11 +37,11 @@ public class Stack {
         return stack[top];
     }
 
-    public boolean isStackEmpty() {
+    public boolean isEmpty() {
         return stackEmpty;
     }
 
-    public boolean isStackFull() {
+    public boolean isFull() {
         return stackFull;
     }
 
