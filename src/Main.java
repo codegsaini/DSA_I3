@@ -6,22 +6,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        FileSystem fs = new FileSystem();
+        FileSystem fs = new FileSystem("usr");
 
-        if (!fs.rootDirExist()) {
-            fs.createRootDirectory("usr");
-        }
-
-        File gaurav = fs.createNewFile("Gaurav.txt");
-
+        File rootDir = fs.getRootDir();
+        File gaurav = rootDir.createNewFile("Gaurav.txt");
         gaurav.setContent("My name is gaurav and this is my file system");
-
         System.out.println(gaurav.getContent());
 
-        System.out.println("List of directories  - ");
-        for (File f: fs.root.getChildren()) {
-            System.out.println(f.name);
-        }
+        gaurav.createNewFile("Gaurav1.txt");
+        gaurav.createNewFile("Gaurav2.txt");
+        gaurav.createNewFile("Gaurav3.txt");
+        gaurav.createNewFile("Gaurav4.txt");
 
     }
 }

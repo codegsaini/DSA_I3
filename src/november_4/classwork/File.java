@@ -8,7 +8,7 @@ public class File {
     public String name;
     boolean isFile;
     boolean isLocked = false;
-    private List<File> children = null;
+    private static List<File> children = null;
     private String content = null;
 
     public File(String name, boolean isFile) {
@@ -24,27 +24,20 @@ public class File {
         return this.content;
     }
 
-    public void addChild(File file) {
-        if (this.children == null) this.children = new ArrayList<>();
-        this.children.add(file);
+    public static void addChild(File file) {
+        if (children == null) children = new ArrayList<>();
+        children.add(file);
     }
 
     public List<File> getChildren() {
         return children;
     }
 
-    public void lockFile(boolean b) {
-        this.isLocked = b;
+    public void lockFile() {
+        this.isLocked = true;
     }
-
-    public void setTypeFile() {
-        this.isFile = true;
-        this.children = null;
-    }
-
-    public void setTypeDir() {
-        this.isFile = false;
-        this.content = null;
+    public void unlock() {
+        this.isLocked = false;
     }
 
     public String getPath() {
@@ -53,5 +46,17 @@ public class File {
 
     public static File getFile(String path) {
         return new File("", true);
+    }
+
+    public static File createDir(String name) {
+        File file = new File(name, false);
+        addChild(file);
+        return file;
+    }
+
+    public File createNewFile(String name) {
+        File file = new File(name, true);
+        addChild(file);
+        return file;
     }
 }
