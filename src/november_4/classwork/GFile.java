@@ -3,15 +3,15 @@ package november_4.classwork;
 import java.util.ArrayList;
 import java.util.List;
 
-public class File {
+public class GFile {
 
     public String name;
     boolean isDir;
     boolean isLocked = false;
-    private final List<File> children = new ArrayList<>();
+    private final List<GFile> children = new ArrayList<>();
     private String content = null;
 
-    public File(String path, boolean isDir) {
+    public GFile(String path, boolean isDir) {
         String[] dirs = path.split("/");
         this.name = dirs[dirs.length - 1];
         this.isDir = isDir;
@@ -25,11 +25,11 @@ public class File {
         return this.content;
     }
 
-    public void addChild(File file) {
-        this.children.add(file);
+    public void addChild(GFile GFile) {
+        this.children.add(GFile);
     }
 
-    public List<File> getChildren() {
+    public List<GFile> getChildren() {
         return children;
     }
 
@@ -44,16 +44,16 @@ public class File {
         return "";
     }
 
-    public File createDir(String name) {
-        File file = new File(name, true);
-        addChild(file);
-        return file;
+    public GFile createDir(String name) {
+        GFile GFile = new GFile(name, true);
+        addChild(GFile);
+        return GFile;
     }
 
-    public File createNewFile(String name) throws Exception {
+    public GFile createNewFile(String name) throws Exception {
         if (!this.isDir) throw new Exception("Exception: Can't create a file, Target is not a directory");
-        File file = new File(name, false);
-        addChild(file);
-        return file;
+        GFile GFile = new GFile(name, false);
+        addChild(GFile);
+        return GFile;
     }
 }
